@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="todo-list list-group">
+        <ng-container *ngFor="let item of items; let i = index">
+            <div [class]="'list-group-item todo-item ' + i">
+                <h3 class="todo-name">{{ item.name }}</h3>
+                <button type="button" class="btn btn-default btn-sm delete-todo" (click)="deleteItem(i)">
+          <span class="glyphicon glyphicon-remove"></span>
+        </button>
+            </div>
+        </ng-container>
+    </div>
+    <div [formGroup]="todoService.form" class="item-add-container">
+        <div class="row">
+            <label>Add item </label>
+            <div *ngIf="todoService.addTextAreaFormHasError" class="invalid-feedback">
+                Item name must be provided
+                <span class="glyphicon glyphicon-warning-sign"></span>
+            </div>
+            <textarea type="text" formControlName="addItemTextForm" rows="4" cols="33" class="form-control new-todo-name"></textarea>
+            <button type="button" class="btn btn-default btn-sm add-todo" (click)="addItem()" [disabled]="todoService.addTextAreaFormHasError">
+        <span class="glyphicon glyphicon-plus"></span>
+      </button>
+        </div>
+    </div>
+</div>
